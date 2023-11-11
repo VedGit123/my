@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 /**
  * Hello world!
@@ -18,18 +20,18 @@ public class App
     {
     	System.out.println("script Started");
    //initializing the web driver
-    	System.setProperty("webdriver.chrome.driver ","C:\\Users\\vedprakash\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
-    	
+    	//System.setProperty("webdriver.chrome.driver ","C:\\Users\\vedprakash\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
+    	WebDriverManager.chromedriver().setup();
     	//setting properties
     	ChromeOptions chromeOptions= new ChromeOptions();
-    	
+    	chromeOptions.addArguments("--headless");
 		
     	//open url
     	System.out.println("Driver Opening the url in browser ");
     	WebDriver driver =new ChromeDriver(chromeOptions);
     	driver.get("http://localhost:8080/addressbook/");
     	//involve implicit waits to load the page
-    	driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    	driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
     	System.out.println("Enter Details");
     	//enter details
     	driver.findElement(By.className("v-button")).click();
